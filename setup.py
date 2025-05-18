@@ -13,7 +13,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="psql-query-builder",
-    version="0.1.2",
+    version="0.2.0",
     author="Taha",  # Update with your actual name
     author_email="tahasamavati11@yahoo.com",  # Update with your actual email
     description="Generate PostgreSQL queries from natural language using AI",

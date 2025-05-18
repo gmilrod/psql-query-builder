@@ -125,6 +125,38 @@ results = builder.run_query(
 print(results)
 ```
 
+### LangChain Integration
+
+PSQL Query Builder can be easily integrated with LangChain to enable natural language database queries in your AI applications:
+
+```python
+# Using the @tool decorator approach
+from langchain_core.tools import tool
+
+@tool
+def query_database(query: str, connection_string: str = "postgresql://user:pass@localhost/db"):
+    """Execute a natural language query against a PostgreSQL database."""
+    from psql_query_builder import QueryBuilder
+    
+    builder = QueryBuilder(connection_string=connection_string)
+    return builder.run_query(query, execute=True)
+
+# Use with LangChain
+from langchain_openai import ChatOpenAI
+from langchain.agents import create_openai_tools_agent, AgentExecutor
+
+llm = ChatOpenAI(model="gpt-4-turbo")
+tools = [query_database]
+agent = create_openai_tools_agent(llm, tools, prompt=None)
+agent_executor = AgentExecutor(agent=agent, tools=tools)
+
+# Run the agent
+response = agent_executor.invoke({"input": "Find all users who registered last month"})
+print(response["output"])
+```
+
+For more advanced integration options, see the full documentation.
+
 ## ⚙️ Configuration
 
 <details>
@@ -162,7 +194,6 @@ psql-query-builder \
 ```
 </details>
 
-## 🚩 Roadmap
 <details>
 <summary><b>Dry Run Mode</b></summary>
 
