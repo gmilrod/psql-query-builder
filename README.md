@@ -24,25 +24,68 @@ pip install psql-query-builder
 
 ## Quick Start
 
-Here's how to get started with PSQL Query Builder in just a few steps:
+Here are some quick examples to get you started with PSQL Query Builder:
 
-1. **Install the package**:
-   ```bash
-   pip install psql-query-builder
-   ```
+### Basic Usage
 
-2. **Set up your database connection** (choose one):
-   - Using command line: `psql-query-builder --connection-string "postgresql://user:password@host:port/dbname"`
-   - Using environment variables: Copy `.env.example` to `.env`, edit with your details, then run `psql-query-builder`
+```bash
+# Install the package
+pip install psql-query-builder
 
-3. **Ask questions in natural language**:
-   ```
-   Enter your natural language query:
-   > Show me all users who registered in the last month
-   ```
+# Run a query with direct connection string
+psql-query-builder --connection-string "postgresql://user:password@host:port/dbname" \
+                  --query "Show me all orders placed yesterday with total over $100"
+```
 
-4. **Get SQL and results**:
-   The tool will generate the SQL query and execute it, showing you the results.
+### Dry Run Mode
+
+Generate SQL without executing it (useful for reviewing queries before running on production databases):
+
+```bash
+# Generate SQL only, don't execute
+psql-query-builder --connection-string "postgresql://user:password@host:port/dbname" \
+                  --query "Find all inactive users who haven't logged in for 3 months" \
+                  --dry-run
+
+# Output:
+# Generated SQL query (dry run mode):
+# --------------------------------------------------
+# SELECT u.id, u.username, u.email, u.last_login
+# FROM users u
+# WHERE u.last_login < NOW() - INTERVAL '3 months'
+# ORDER BY u.last_login ASC;
+# --------------------------------------------------
+```
+
+### Using Environment Variables
+
+```bash
+# Set environment variables
+export PSQL_HOST=localhost
+export PSQL_PORT=5432
+export PSQL_DBNAME=myapp
+export PSQL_USER=postgres
+export OPENAI_API_KEY=sk-...
+
+# Run in interactive mode
+psql-query-builder
+
+# Then enter queries at the prompt
+> Show me the top 10 products by revenue this month
+```
+
+### With Schema Caching
+
+```bash
+# First run (caches schema)
+psql-query-builder --query "List all customers in California"
+
+# Subsequent runs (uses cached schema - much faster)
+psql-query-builder --query "Show me customers who placed more than 5 orders"
+
+# Force refresh schema cache
+psql-query-builder --query "Find high-value customers" --refresh-schema
+```
 
 ## Usage
 
