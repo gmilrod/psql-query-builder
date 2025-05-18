@@ -13,13 +13,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="psql-query-builder",
-    version="0.1.0",
+    version="0.1.2",
     author="Taha",  # Update with your actual name
     author_email="tahasamavati11@yahoo.com",  # Update with your actual email
     description="Generate PostgreSQL queries from natural language using AI",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/celestialtaha/psql-query-builder",  # Update with your actual GitHub repo
+    url="https://github.com/celestialtaha/psql-query-builder",
     package_dir={"":"src"},  # Tell setuptools packages are under src
     packages=find_packages(where="src"),
     classifiers=[
