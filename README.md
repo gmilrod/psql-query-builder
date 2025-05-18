@@ -1,51 +1,174 @@
-# PSQL Query Builder
+<div align="center">
 
-Generate PostgreSQL queries from natural language using AI.
+# 🔍 PSQL Query Builder
 
-## Overview
+<h3>Transform natural language into optimized PostgreSQL queries with AI</h3>
 
-PSQL Query Builder is a Python tool that allows you to generate SQL queries for PostgreSQL databases using natural language. It leverages OpenAI's language models to translate your plain English requests into proper SQL queries, making database interaction more accessible.
+[![PyPI version](https://badge.fury.io/py/psql-query-builder.svg)](https://badge.fury.io/py/psql-query-builder)
+[![Python Versions](https://img.shields.io/pypi/pyversions/psql-query-builder.svg)](https://pypi.org/project/psql-query-builder/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Downloads](https://static.pepy.tech/badge/psql-query-builder)](https://pepy.tech/project/psql-query-builder)
 
-## Features
+</div>
 
-- Generate SQL queries from natural language descriptions
-- Automatic database schema analysis with smart caching
-- Enhanced error handling with automatic fix suggestions
-- Execute generated queries and display results
-- Flexible configuration via environment variables or command-line arguments
-- Interactive mode for multiple queries
-- Single query mode for scripting
+## ✨ Overview
 
-## Installation
+PSQL Query Builder is a powerful Python tool that transforms natural language into optimized PostgreSQL queries using AI. It bridges the gap between human language and SQL, making database interaction accessible to everyone - not just SQL experts.
+
+Built on OpenAI's advanced language models, this tool analyzes your database schema and generates precise, efficient SQL queries based on plain English descriptions. Whether you're a data analyst without SQL expertise, a developer looking to speed up query writing, or a database administrator seeking to simplify access for your team, PSQL Query Builder streamlines your workflow.
+
+## ✅ Features
+
+<table>
+  <tr>
+    <td width="50%">
+      <h3>🤖 AI-Powered SQL Generation</h3>
+      <ul>
+        <li>Transform natural language to optimized SQL</li>
+        <li>Context-aware query generation</li>
+        <li>Support for complex queries and joins</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>⚡ Smart Schema Caching</h3>
+      <ul>
+        <li>Automatic database schema analysis</li>
+        <li>Configurable cache TTL</li>
+        <li>Significant performance improvement</li>
+      </ul>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%">
+      <h3>🛠️ Flexible Configuration</h3>
+      <ul>
+        <li>Environment variables support</li>
+        <li>Command-line arguments</li>
+        <li>Multiple output formats (table, JSON, CSV)</li>
+      </ul>
+    </td>
+    <td width="50%">
+      <h3>🔧 Intelligent Error Handling</h3>
+      <ul>
+        <li>Automatic fix suggestions</li>
+        <li>Detailed error messages</li>
+        <li>Interactive query correction</li>
+      </ul>
+    </td>
+  </tr>
+</table>
+
+## 🎯 Use Cases
+
+<div align="center">
+<table>
+  <tr>
+    <td align="center" width="33%">
+      <h3>📊 Data Analysts</h3>
+      <p>Generate complex SQL queries without deep SQL knowledge</p>
+      <p>Quickly explore database structures and relationships</p>
+      <p>Prototype queries in natural language before refinement</p>
+    </td>
+    <td align="center" width="33%">
+      <h3>👨‍💻 Developers</h3>
+      <p>Speed up database query development</p>
+      <p>Reduce time spent debugging complex SQL syntax</p>
+      <p>Generate queries for unfamiliar database schemas</p>
+    </td>
+    <td align="center" width="33%">
+      <h3>🛡️ Database Admins</h3>
+      <p>Provide simplified access to non-technical team members</p>
+      <p>Quickly generate queries for common reporting needs</p>
+      <p>Validate schema design through natural language</p>
+    </td>
+  </tr>
+</table>
+</div>
+
+## 🚀 Quick Start
+
+### Installation
 
 ```bash
 pip install psql-query-builder
 ```
-
-## Quick Start
-
-Here are some quick examples to get you started with PSQL Query Builder:
 
 ### Basic Usage
 
 ```bash
-# Install the package
-pip install psql-query-builder
+# Using environment variables for connection
+export PSQL_CONNECTION_STRING="postgresql://username:password@localhost:5432/database"
+export OPENAI_API_KEY="your-openai-api-key"
 
-# Run a query with direct connection string
-psql-query-builder --connection-string "postgresql://user:password@host:port/dbname" \
-                  --query "Show me all orders placed yesterday with total over $100"
+# Run a query
+psql-query-builder --query "Find all active users who registered last month"
 ```
 
-### Dry Run Mode
+### Python API
 
-Generate SQL without executing it (useful for reviewing queries before running on production databases):
+```python
+from psql_query_builder import QueryBuilder
+
+# Initialize the query builder
+builder = QueryBuilder(
+    connection_string="postgresql://username:password@localhost:5432/database",
+    openai_api_key="your-openai-api-key"
+)
+
+# Generate and execute a query
+results = builder.run_query(
+    "Find all products with more than 100 units in stock and price less than $50",
+    execute=True
+)
+
+# Print the results
+print(results)
+```
+
+## ⚙️ Configuration
+
+<details>
+<summary><b>Environment Variables</b></summary>
 
 ```bash
-# Generate SQL only, don't execute
-psql-query-builder --connection-string "postgresql://user:password@host:port/dbname" \
-                  --query "Find all inactive users who haven't logged in for 3 months" \
-                  --dry-run
+# Full connection string
+export PSQL_CONNECTION_STRING="postgresql://username:password@localhost:5432/database"
+
+# Or individual connection parameters
+export PSQL_HOST="localhost"
+export PSQL_PORT="5432"
+export PSQL_USER="username"
+export PSQL_PASSWORD="password"
+export PSQL_DATABASE="database"
+
+# OpenAI API key
+export OPENAI_API_KEY="your-openai-api-key"
+```
+</details>
+
+<details>
+<summary><b>Command-line Arguments</b></summary>
+
+```bash
+psql-query-builder \
+  --host localhost \
+  --port 5432 \
+  --user username \
+  --password password \
+  --database database \
+  --api-key your-openai-api-key \
+  --query "Find all products with more than 100 units in stock" \
+  --dry-run  # Optional: generate SQL without executing
+```
+</details>
+
+## 🚩 Roadmap
+<details>
+<summary><b>Dry Run Mode</b></summary>
+
+```bash
+# Generate SQL only, don't execute (useful for reviewing queries before running on production databases)
+psql-query-builder --query "Find all inactive users who haven't logged in for 3 months" --dry-run
 
 # Output:
 # Generated SQL query (dry run mode):
@@ -56,214 +179,115 @@ psql-query-builder --connection-string "postgresql://user:password@host:port/dbn
 # ORDER BY u.last_login ASC;
 # --------------------------------------------------
 ```
+</details>
 
-### Using Environment Variables
+<details>
+<summary><b>Schema Caching</b></summary>
 
-```bash
-# Set environment variables
-export PSQL_HOST=localhost
-export PSQL_PORT=5432
-export PSQL_DBNAME=myapp
-export PSQL_USER=postgres
-export OPENAI_API_KEY=sk-...
-
-# Run in interactive mode
-psql-query-builder
-
-# Then enter queries at the prompt
-> Show me the top 10 products by revenue this month
-```
-
-### With Schema Caching
+For better performance with repeated queries, enable schema caching:
 
 ```bash
-# First run (caches schema)
-psql-query-builder --query "List all customers in California"
+# Enable schema caching with default settings
+psql-query-builder --query "Find all users who placed orders in the last week" --cache
 
-# Subsequent runs (uses cached schema - much faster)
-psql-query-builder --query "Show me customers who placed more than 5 orders"
+# Specify cache path and TTL (time-to-live in seconds)
+psql-query-builder --query "Find all users who placed orders in the last week" \
+  --cache \
+  --cache-path "/tmp/schema_cache" \
+  --cache-ttl 3600
 
-# Force refresh schema cache
-psql-query-builder --query "Find high-value customers" --refresh-schema
+# Force refresh the cache
+psql-query-builder --query "Find all users who placed orders in the last week" \
+  --cache \
+  --force-refresh
 ```
+</details>
 
-## Usage
+## 📘 Advanced Usage
 
-### Command Line Interface
+<div align="center">
+<table>
+  <tr>
+    <td align="center" width="50%">
+      <h3>💬 Interactive Mode</h3>
+      <p>Start an interactive session for multiple queries:</p>
+      <pre><code>psql-query-builder</code></pre>
+      <p>Then enter queries at the prompt:</p>
+      <pre><code>> Find all customers in California
+> Show revenue by product category
+> exit</code></pre>
+    </td>
+    <td align="center" width="50%">
+      <h3>🔍 Single Query Mode</h3>
+      <p>Execute a single query and exit:</p>
+      <pre><code>psql-query-builder --query "Find all users 
+who registered in the last month"</code></pre>
+      <p>Perfect for scripts and automation</p>
+    </td>
+  </tr>
+</table>
+</div>
 
-The package provides a command-line interface with two modes of operation:
+## 📚 API Reference
 
-#### Interactive Mode
-
-```bash
-# Basic usage with connection string
-psql-query-builder --connection-string "postgresql://user:password@host:port/dbname"
-
-# Using individual connection parameters
-psql-query-builder --host localhost --port 5432 --dbname mydb --user myuser --password mypassword
-
-# Using environment variables (set PSQL_CONNECTION_STRING or individual PSQL_* variables)
-psql-query-builder
-```
-
-#### Single Query Mode
-
-```bash
-# Run a single query and exit
-psql-query-builder --query "Show me all users who signed up last month" --output-format json
-
-# Generate SQL without executing it (dry run mode)
-psql-query-builder --query "List all products with price greater than 100" --dry-run
-```
-
-### Configuration Options
-
-#### Environment Variables
-
-A sample `.env.example` file is included in the package. You can copy this file to `.env` and update it with your values:
-
-```bash
-# Copy the example file to .env
-cp .env.example .env
-
-# Edit the .env file with your values
-vim .env  # or use any text editor
-```
-
-#### Database Connection
-
-You can configure the database connection in several ways (in order of precedence):
-
-1. Command-line arguments:
-   ```
-   --connection-string "postgresql://user:password@host:port/dbname"
-   ```
-   
-   Or individual parameters:
-   ```
-   --host localhost --port 5432 --dbname mydb --user myuser --password mypassword --sslmode require
-   ```
-
-2. Environment variables (in `.env` file or exported to your shell):
-   ```
-   PSQL_CONNECTION_STRING="postgresql://user:password@host:port/dbname"
-   ```
-   
-   Or individual variables:
-   ```
-   PSQL_HOST=localhost
-   PSQL_PORT=5432
-   PSQL_DBNAME=mydb
-   PSQL_USER=myuser
-   PSQL_PASSWORD=mypassword
-   PSQL_SSLMODE=require
-   ```
-
-3. Interactive prompt if no connection details are provided
-
-#### Schema Caching
-
-The tool includes a smart schema caching system that significantly improves performance when running multiple queries against the same database. Key features include:
-
-- Automatic caching of database schema information
-- Configurable cache time-to-live (TTL)
-- Options to force refresh or clear the cache
-
-To use schema caching options:
-
-```bash
-# Specify custom cache location
-psql-query-builder --schema-cache-path ~/.cache/psql-query-builder
-
-# Set custom TTL (in seconds, default is 24 hours)
-psql-query-builder --schema-cache-ttl 3600
-
-# Force refresh the schema cache
-psql-query-builder --refresh-schema
-
-# Clear the schema cache before running
-psql-query-builder --clear-schema-cache
-```
-
-Schema caching is particularly useful for large databases where schema analysis can take significant time.
-
-#### Enhanced Error Handling
-
-The tool provides intelligent error handling with helpful suggestions when SQL queries fail:
-
-- Detailed error messages with context
-- Automatic suggestions for fixing common errors
-- Interactive fix application for quick recovery
-- Support for column and table name typos
-
-When a query fails, the tool will:
-
-1. Analyze the error to determine the cause
-2. Suggest possible fixes based on the database schema
-3. Allow you to apply a fix and retry the query
-
-This makes the tool much more user-friendly, especially for those who are not SQL experts.
-
-#### Dry Run Mode
-
-Dry run mode allows you to generate SQL queries without executing them. This is useful for:
-
-- Reviewing and validating generated SQL before execution
-- Learning how the tool translates natural language to SQL
-- Debugging or troubleshooting query generation
-- Saving queries for later execution
-
-To use dry run mode, add the `--dry-run` or `-d` flag:
-
-```bash
-psql-query-builder --query "Find all transactions over $1000" --dry-run
-```
-
-The tool will connect to your database to analyze the schema, generate the SQL query using OpenAI, and then display the query without executing it. This is particularly helpful when working with production databases where you want to review queries before running them.
-
-#### OpenAI API
-
-Configure the OpenAI API:
-
-1. Command-line arguments:
-   ```
-   --openai-api-key "your-api-key"
-   --model "gpt-4o-mini"
-   --temperature 0.1
-   ```
-
-2. Environment variables:
-   ```
-   OPENAI_API_KEY="your-api-key"
-   ```
-
-3. Interactive prompt if API key is not provided
-
-### Python API
-
-You can also use PSQL Query Builder as a library in your Python code:
+<details>
+<summary><b>Python API</b></summary>
 
 ```python
-from psql_query_builder import get_database_summary, generate_sql_prompt, generate_sql_with_openai, run_query
+from psql_query_builder import QueryBuilder
 
-# Get database schema
-connection_string = "postgresql://user:password@host:port/dbname"
-db_schema = get_database_summary(connection_string)
+# Initialize with connection string
+builder = QueryBuilder(
+    connection_string="postgresql://username:password@localhost:5432/database",
+    openai_api_key="your-openai-api-key"
+)
 
-# Generate SQL from natural language
-user_query = "Show me all active users who registered in the last month"
-prompt = generate_sql_prompt(user_query, db_schema)
-sql_query = generate_sql_with_openai(prompt)
+# Or with individual parameters
+builder = QueryBuilder(
+    host="localhost",
+    port=5432,
+    database="mydatabase",
+    user="myuser",
+    password="mypassword",
+    openai_api_key="your-openai-api-key"
+)
 
-# Execute the query
-results = run_query(connection_string, sql_query)
+# Generate SQL without executing
+sql = builder.generate_query("Find all users who registered last month")
+print(sql)
+
+# Generate and execute query
+results = builder.run_query(
+    "Find all products with more than 100 units in stock",
+    execute=True
+)
 print(results)
 ```
+</details>
 
-## License
+## 🚩 Roadmap
+
+Future development plans for PSQL Query Builder include:
+
+- [ ] Support for more database systems (MySQL, SQLite, SQL Server)
+- [ ] Interactive SQL editing and refinement
+- [ ] Query history management and reuse
+- [ ] Integration with popular database tools and ORMs
+- [ ] Web interface for non-CLI usage
+- [ ] Query optimization suggestions
+- [ ] Support for database migrations and schema changes
+
+Feel free to contribute to any of these features or suggest new ones!
+
+## 👨‍💻 Contributing
+
+Contributions are welcome! Here's how you can help:
+
+1. **Report bugs or request features**: Open an issue describing what you found or what you'd like to see
+2. **Submit improvements**: Fork the repository, make your changes, and submit a pull request
+3. **Improve documentation**: Help clarify or expand the documentation
+4. **Share your use cases**: Let us know how you're using PSQL Query Builder
+
+## 📜 License
 
 MIT
-
-## Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
